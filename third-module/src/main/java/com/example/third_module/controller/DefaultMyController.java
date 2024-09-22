@@ -29,4 +29,17 @@ public class DefaultMyController {
         log.info("list size is {}", wholeList.size());
         return "catalogue/list";
     }
+
+
+    @GetMapping(value = "web-with-images")
+    public String getImageSite(Model model) {
+        model.addAttribute("myDescription", "мое изображение через 5 лет кача");
+        return "catalogue/image";
+    }
+
+    @GetMapping(value = "wade-koichi")
+    public String getWadeKoichi(Model model) {
+        model.addAttribute("header2", "this is already prototip");
+        return "catalogue/wade_koichi_2";
+    }
 }
