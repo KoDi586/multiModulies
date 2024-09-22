@@ -42,4 +42,15 @@ public class DefaultMyController {
         model.addAttribute("header2", "this is already prototip");
         return "catalogue/wade_koichi_2";
     }
+
+    @GetMapping(value = "koichi-with-two-themes")
+    public String getKoichiWithTwoThemes(Model model) {
+        Integer item = 0;
+        if (item < 20) {
+            model.addAttribute("header1", "try click on logo");
+            return "catalogue/wade_koichi_with_two_theme";
+        } else {
+            return "catalogue/why_clicking_more";
+        }
+    }
 }

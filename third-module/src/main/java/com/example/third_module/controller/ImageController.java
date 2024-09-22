@@ -16,7 +16,7 @@ public class ImageController {
 
     @GetMapping(value = "/image")
     public ResponseEntity<byte[]> getImage() throws IOException {
-        Resource imgFile = new ClassPathResource("static/images/koichi_without.jpg");
+        Resource imgFile = new ClassPathResource("static/images/koichi_without.png");
 
         byte[] imageBytes = Files.readAllBytes(imgFile.getFile().toPath());
 
