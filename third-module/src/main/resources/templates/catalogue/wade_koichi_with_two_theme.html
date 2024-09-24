@@ -26,7 +26,6 @@
 </div>
 <hr>
 <h2 th:text="${header1}">Здесь будет заголовок</h2>
-<!--<p id="counter">Нажатий: 0</p>-->
 
 
 <script>
@@ -35,18 +34,7 @@
 
     function changeTheme() {
         document.body.classList.toggle('dark-theme');
-        handleImageClick();
     }
-
-
-    function handleImageClick() {
-        const serverIp1 = [[${serverIp1}]];
-        const serverIp2 = [[${serverIp2}]];
-        clickCount++;
-        if (clickCount > 8) {
-            window.location.href = 'http://192.168.' + serverIp1 + '.' + serverIp2 + ':8081/why';
-        }
-     }
 </script>
 </body>
 </html>

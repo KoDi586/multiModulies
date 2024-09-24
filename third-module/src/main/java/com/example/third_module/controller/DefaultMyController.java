@@ -16,11 +16,6 @@ import java.util.List;
 @Slf4j
 public class DefaultMyController {
 
-    @Value("${server.ip1}")
-    private String serverIp1;
-    @Value("${server.ip2}")
-    private String serverIp2;
-
     private final MyService myService;
 
     @GetMapping
@@ -51,8 +46,6 @@ public class DefaultMyController {
 
     @GetMapping(value = "koichi-with-two-themes")
     public String getKoichiWithTwoThemes(Model model) {
-        model.addAttribute("serverIp1", serverIp1);
-        model.addAttribute("serverIp2", serverIp2);
         model.addAttribute("header1", "try click on logo");
         return "catalogue/wade_koichi_with_two_theme";
     }
