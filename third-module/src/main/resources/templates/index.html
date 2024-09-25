@@ -23,12 +23,17 @@
         /* Левая часть с логотипом и контентом */
         .left-content {
             flex: 1;
-            padding: 20px;
+            padding: 2px;
         }
+
+
+        /*-------------для main menu -------------------*/
+
+
 
         /* Правая колонка с таблицей */
         .right-table {
-            width: 300px; /* ширина таблицы */
+            width: 220px; /* ширина таблицы */
             padding: 20px;
         }
 
@@ -43,9 +48,54 @@
         }
 
         th, td {
-            padding: 10px;  /*Отступы текста в таблице*/
+            padding: 10px;  /* Отступы текста в таблице */
             text-align: right;
             background-color: transparent; /* Прозрачный фон */
+        }
+
+        /*------------------for line---------------------*/
+
+
+        /* Стили для ленты изображений */
+        .carousel-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 100%;
+        }
+
+        .carousel img {
+            width: 100%; /* Каждое изображение растянуто по ширине контейнера */
+            max-width: 400px; /* Увеличиваем ширину изображения */
+            height: 300px; /* Увеличиваем высоту изображения */
+            margin-right: 10px;
+        }
+
+
+        .carousel-control {
+            position: absolute;          /* Кнопки будут размещены абсолютно относительно контейнера */
+            top: 50%;                    /* Вертикально центрирует кнопки относительно высоты контейнера */
+            transform: translateY(-50%); /* Сдвигает кнопки по вертикали на 50%, чтобы точно центрировать их по оси Y */
+            background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон кнопок */
+            color: white;                /* Белый цвет текста (стрелок) */
+            border: none;                /* Убирает стандартную рамку кнопок */
+            padding: 10px;               /* Внутренние отступы кнопок (увеличивают кликабельную область) */
+            cursor: pointer;             /* Меняет курсор на "указатель" при наведении на кнопку */
+        }
+
+
+        .prev {
+            left: 10px; /* Кнопка "влево" располагается на 10 пикселей от левого края контейнера */
+        }
+
+        .next {
+            right: 10px; /* Кнопка "вправо" располагается на 10 пикселей от правого края контейнера */
         }
 
     </style>
@@ -55,12 +105,34 @@
     <!-- Левая часть с логотипом и контентом -->
     <div class="left-content">
         <div style="display: flex; align-items: flex-start;">
-            <img th:src="@{/image/logo}" alt="logo" width="100px" height="100px" style="margin-right: 10px;" class="photo" onclick="changeTheme()">
+            <img th:src="@{/image/logo}" alt="logo-koichi" width="150px" height="100px" style="margin-right: 3 px;" class="photo" onclick="changeTheme()">
             <a href="" style="flex-grow: 1;">
-                <img th:src="@{/image/banner}" alt="koichi" style="width: 100%; height: 100px;">
+                <img th:src="@{/image/banner}" alt="banner" style="width: 100%; height: 100px;">
             </a>
         </div>
         <hr>
+
+        <!-- Горизонтальная лента изображений -->
+        <div class="carousel-container">
+            <div class="carousel" id="carousel">
+                <img th:src="@{/image/for-line/1}" alt="Image 1">
+                <img th:src="@{/image/for-line/2}" alt="Image 2">
+                <img th:src="@{/image/for-line/3}" alt="Image 3">
+                <img th:src="@{/image/for-line/4}" alt="Image 4">
+                <img th:src="@{/image/for-line/5}" alt="Image 5">
+                <img th:src="@{/image/for-line/6}" alt="Image 6">
+                <img th:src="@{/image/for-line/7}" alt="Image 7">
+                <img th:src="@{/image/for-line/8}" alt="Image 8">
+                <img th:src="@{/image/for-line/9}" alt="Image 9">
+                <img th:src="@{/image/for-line/10}" alt="Image 10">
+                <img th:src="@{/image/for-line/11}" alt="Image 11">
+                <img th:src="@{/image/for-line/12}" alt="Image 12">
+            </div>
+
+            <!-- Кнопки управления -->
+            <button class="carousel-control prev" onclick="moveCarousel(-1)">&#10094;</button>
+            <button class="carousel-control next" onclick="moveCarousel(1)">&#10095;</button>
+        </div>
     </div>
 
     <!-- Правая колонка с таблицей -->
@@ -85,7 +157,7 @@
                 <td>For worker</td>
             </tr>
             <tr>
-                <td>Sing in/sing up</td>
+                <td>Sign in/sign up</td>
             </tr>
         </table>
     </div>
@@ -93,8 +165,34 @@
 
 <script>
     function changeTheme() {
-        document.body.classList.toggle('dark-theme');
+          document.body.classList.toggle('dark-theme');
     }
+
+    let currentIndex = 0;
+
+    const carousel = document.getElementById('carousel');
+    const images = carousel.querySelectorAll('img');
+
+    function moveCarousel(direction) {
+        currentIndex += direction;
+        if (currentIndex < 0) {
+            currentIndex = images.length - 1; // если влево, но уже первый элемент, перейти к последнему
+        } else if (currentIndex >= images.length) {
+            currentIndex = 0; // если вправо, но последний элемент, перейти к первому
+        }
+        updateCarousel();
+    }
+
+    function updateCarousel() {
+        const offset = -currentIndex * (images[0].offsetWidth + 10); // с учётом отступов
+        carousel.style.transform = `translateX(${offset}px)`;
+    }
+
+    // Автоматическая прокрутка
+    setInterval(() => {
+        moveCarousel(1);
+    }, 5000); // смена каждые 3 секунды
+
 </script>
 </body>
 </html>

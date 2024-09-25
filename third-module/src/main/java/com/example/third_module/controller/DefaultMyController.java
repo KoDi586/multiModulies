@@ -25,10 +25,6 @@ public class DefaultMyController {
         return "index";
     }
 
-    @GetMapping("/line")
-    public String getLine(Model model) {
-        return "line/line_photo";
-    }
 
     @GetMapping(value = "/get-list")
     public String getList(Model model) {
@@ -36,12 +32,6 @@ public class DefaultMyController {
         model.addAttribute("params", wholeList);
         log.info("list size is {}", wholeList.size());
         return "catalogue/list";
-    }
-
-    @GetMapping(value = "/two-themes")
-    public String getKoichiWithTwoThemes(Model model) {
-        model.addAttribute("header1", "try click on logo");
-        return "catalogue/wade_koichi_with_two_theme";
     }
 
     @GetMapping(value = "/why")

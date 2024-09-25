@@ -15,9 +15,9 @@ import java.nio.file.Files;
 @Controller
 public class ImageController {
 
-    @GetMapping(value = "/image/banner")
-    public ResponseEntity<byte[]> getImage() throws IOException {
-        Resource imgFile = new ClassPathResource("static/images/banner.png");
+    @GetMapping(value = "/image/logo")
+    public ResponseEntity<byte[]> getLogo() throws IOException {
+        Resource imgFile = new ClassPathResource("static/images/koichi_without.png");
 
         byte[] imageBytes = Files.readAllBytes(imgFile.getFile().toPath());
 
@@ -26,9 +26,9 @@ public class ImageController {
         return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/image/logo")
-    public ResponseEntity<byte[]> getLogo() throws IOException {
-        Resource imgFile = new ClassPathResource("static/images/koichi_without.png");
+    @GetMapping(value = "/image/banner")
+    public ResponseEntity<byte[]> getImage() throws IOException {
+        Resource imgFile = new ClassPathResource("static/images/banner.png");
 
         byte[] imageBytes = Files.readAllBytes(imgFile.getFile().toPath());
 
