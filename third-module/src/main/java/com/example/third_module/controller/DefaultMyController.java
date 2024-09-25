@@ -25,6 +25,11 @@ public class DefaultMyController {
         return "index";
     }
 
+    @GetMapping("/line")
+    public String getLine(Model model) {
+        return "line/line_photo";
+    }
+
     @GetMapping(value = "/get-list")
     public String getList(Model model) {
         List<MyModel> wholeList = myService.getWholeList();
